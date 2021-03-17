@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Countdown Timer</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html{
+            height: 100%;
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body{
+            background-color: #5b3ce7f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container{
+            height: 500px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .countdown-box{
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wrap{
+            width: 150px;
+            height: 150px;
+            margin-left: 20px;
+            background: rgba(188, 219, 14, 0.74);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            border-width: 3px;
+            border-style: solid;
+            border-image: linear-gradient(to-right, #ef32d9, #89fffd) 10% 10%;
+            filter: drop-shadow(0px 1px 5px #3494f6);
+        }
+        .wrap .number{
+            font-size: 70px;
+        }
+        .wrap .text{
+            font-size: 20px;
+        }
+        .number .text{
+            text-shadow: 0 2px 5px #3494e6;
+            font-weight: 700;
+            background-image: linear-gradient(to right, #ef32d9, #89fffd);
+            -webkit-background-clip: text;
+            filter: drop-shadow(0px 1px 10px #3494e6);
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="countdown-box">
+            <div class="wrap">
+                <span class="number" id="days"></span>
+                <span class="text">Days</span>
+            </div>
+            <div class="wrap">
+                <span class="number" id="hours"></span>
+                <span class="text">Hours</span>
+            </div>
+            <div class="wrap">
+                <span class="number" id="minutes"></span>
+                <span class="text">Minutes</span>
+            </div>
+            <div class="wrap">
+                <span class="number" id="seconds"></span>
+                <span class="text">Seconds</span>
+            </div>
+        </div>
+        
+    </div>
+    <script>
+        let countDownDate = new Date("July 6, 2021 06:00:00").getTime();
+        let x = setInterval(function () {
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 *24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML="0";
+                document.getElementById("hours").innerHTML ="0";
+                document.getElementById("minutes").innerHTML ="0";
+                document.getElementById("seconds").innerHTML ="0";
+            }
+        }, 1000);
+    </script> 
+</body>
+</html>
